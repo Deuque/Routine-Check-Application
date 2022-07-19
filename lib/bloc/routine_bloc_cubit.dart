@@ -12,6 +12,7 @@ class RoutineBlocCubit extends Cubit<RoutineBlocState> {
 
   RoutineBlocCubit(this.routineRepo) : super(const RoutineBlocState([]));
 
+  // load all routines from local storage
   Future<void> loadRoutines() async {
     try {
       final response = await routineRepo.getRoutines();
@@ -22,6 +23,7 @@ class RoutineBlocCubit extends Cubit<RoutineBlocState> {
     }
   }
 
+  // create new routine and save to local storage
   Future<String?> createNewRoutine(RoutineModel routineModel) async {
     try {
       final routineList = [routineModel, ...state.routines];
@@ -35,6 +37,7 @@ class RoutineBlocCubit extends Cubit<RoutineBlocState> {
     }
   }
 
+  // edit a routine and save to local storage
   Future<String?> editRoutine(RoutineModel routineModel) async {
     try {
       final routineList = state.routines
@@ -50,6 +53,7 @@ class RoutineBlocCubit extends Cubit<RoutineBlocState> {
     }
   }
 
+  // delete a  routine and save to local storage
   Future<String?> deleteRoutine(RoutineModel routineModel) async {
     try {
       final routineList = state.routines

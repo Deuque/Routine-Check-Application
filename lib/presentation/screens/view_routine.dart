@@ -30,7 +30,13 @@ class ViewRoutine extends StatelessWidget {
     final textTheme = Theme.of(context).textTheme;
     return Scaffold(
       appBar: AppBar(
-        title: Text(model.title),
+        title: Hero(
+          tag: model.title,
+          child: Material(
+              color: Colors.transparent,
+              textStyle: textTheme.titleLarge,
+              child: Text(model.title)),
+        ),
         centerTitle: false,
         actions: [
           IconButton(

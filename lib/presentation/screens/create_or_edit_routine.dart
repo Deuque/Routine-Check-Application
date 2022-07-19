@@ -51,6 +51,7 @@ class _CreateOrEditRoutineState extends State<CreateOrEditRoutine> {
                 ),
                 TextFormField(
                   initialValue: title,
+                  textCapitalization: TextCapitalization.sentences,
                   decoration: const InputDecoration(
                     labelText: 'Routine title',
                   ),

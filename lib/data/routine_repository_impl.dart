@@ -4,6 +4,7 @@ import 'package:nomba/data/routine_repository.dart';
 import 'package:nomba/domain/routine_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+// A concrete implementation of the routine repository used to save and get routines
 class RoutineRepositoryImpl implements RoutineRepository {
   Future<SharedPreferences> get _prefInstance =>
       SharedPreferences.getInstance();

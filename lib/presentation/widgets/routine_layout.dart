@@ -28,35 +28,33 @@ class RoutineLayout extends StatelessWidget {
         child: Row(
           children: [
             Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
+              child: Hero(
+                tag: routineModel.title,
+                child: Material(
+                  color: Colors.transparent,
+                  child: Text(
                     routineModel.title,
                     style: textTheme.titleMedium,
                   ),
-                  const SizedBox(
-                    height: 4,
-                  ),
-                  Material(
-                    color: Colors.black.withOpacity(.7),
-                    borderRadius: BorderRadius.circular(5),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 2.0,
-                        horizontal: 6,
-                      ),
-                      child: Text(
-                        routineModel.frequency.name,
-                        style: textTheme.caption?.copyWith(color: Colors.white),
-                      ),
-                    ),
-                  )
-                ],
+                ),
+              ),
+            ),
+            Material(
+              color: Colors.black.withOpacity(.7),
+              borderRadius: BorderRadius.circular(5),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  vertical: 2.0,
+                  horizontal: 6,
+                ),
+                child: Text(
+                  routineModel.frequency.name,
+                  style: textTheme.caption?.copyWith(color: Colors.white),
+                ),
               ),
             ),
             const SizedBox(
-              width: 10,
+              width: 15,
             ),
             const Icon(
               Icons.arrow_forward_ios_rounded,

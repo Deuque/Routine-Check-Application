@@ -11,8 +11,11 @@ class AllRoutinesTab extends StatelessWidget {
     return BlocBuilder<RoutineBlocCubit, RoutineBlocState>(
       builder: (context, state) {
         if (state.routines.isEmpty) {
+          // displays an empty routine state
           return _emptyRoutinesView(context);
         }
+
+        // displays loaded routines
         return ListView(
           padding: const EdgeInsets.all(24),
           children: state.routines
