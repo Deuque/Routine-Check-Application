@@ -4,13 +4,14 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nomba/data/routine_repository.dart';
 import 'package:nomba/domain/routine_model.dart';
+import 'package:nomba/domain/schedule_model.dart';
 
 part 'routine_bloc_state.dart';
 
 class RoutineBlocCubit extends Cubit<RoutineBlocState> {
   final RoutineRepository routineRepo;
 
-  RoutineBlocCubit(this.routineRepo) : super(const RoutineBlocState([]));
+  RoutineBlocCubit(this.routineRepo) : super( RoutineBlocState([]));
 
   // load all routines from local storage
   Future<void> loadRoutines() async {

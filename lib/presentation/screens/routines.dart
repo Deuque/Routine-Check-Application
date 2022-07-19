@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nomba/bloc/routine_bloc_cubit.dart';
 import 'package:nomba/presentation/tabs/all_routines_tab.dart';
+import 'package:nomba/presentation/tabs/schedules_tab.dart';
 
 class Routines extends StatefulWidget {
   const Routines({Key? key}) : super(key: key);
@@ -52,7 +53,7 @@ class _RoutinesState extends State<Routines>
       ),
       body: TabBarView(
         controller: _tabController,
-        children: const [SizedBox.shrink(), AllRoutinesTab()],
+        children: const [ScheduleTab(), AllRoutinesTab()],
       ),
     );
   }
