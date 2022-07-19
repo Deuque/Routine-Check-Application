@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nomba/bloc/routine_bloc_cubit.dart';
+import 'package:nomba/presentation/tabs/all_routines_tab.dart';
 
 class Routines extends StatefulWidget {
   const Routines({Key? key}) : super(key: key);
@@ -9,12 +12,13 @@ class Routines extends StatefulWidget {
 
 class _RoutinesState extends State<Routines>
     with SingleTickerProviderStateMixin {
-  late TabController controller;
+  late TabController _tabController;
 
   @override
   void initState() {
     super.initState();
-    controller = TabController(length: 2, vsync: this);
+    _tabController = TabController(length: 2, vsync: this);
+    BlocProvider.of<RoutineBlocCubit>(context).loadRoutines();
   }
 
   @override
@@ -23,7 +27,13 @@ class _RoutinesState extends State<Routines>
       appBar: AppBar(
         title: const Text('Routines'),
         centerTitle: false,
-        actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.add))],
+        actions: [
+          IconButton(
+            onPressed: () =>
+                Navigator.pushNamed(context, '/createOrEditRoutine'),
+            icon: const Icon(Icons.add),
+          )
+        ],
         bottom: TabBar(
           tabs: const ['Schedule', 'All Routines']
               .map(
@@ -37,8 +47,12 @@ class _RoutinesState extends State<Routines>
           unselectedLabelColor: Colors.black54,
           indicatorColor: Colors.black,
           indicatorSize: TabBarIndicatorSize.label,
-          controller: controller,
+          controller: _tabController,
         ),
+      ),
+      body: TabBarView(
+        controller: _tabController,
+        children: const [SizedBox.shrink(), AllRoutinesTab()],
       ),
     );
   }
