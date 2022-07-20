@@ -13,16 +13,26 @@ class ScheduleTab extends StatelessWidget {
     return BlocBuilder<RoutineBlocCubit, RoutineBlocState>(
       builder: (context, state) {
         final upcomingSchedules = state.scheduledRoutines
-            .where((s) => s.status == ScheduleStatus.upcoming);
+            .where((s) => s.status == ScheduleStatus.upcoming)
+            .toList();
+        upcomingSchedules.sort((a, b) => a.time.compareTo(b.time));
+
         final nextUpSchedules = state.scheduledRoutines
-            .where((s) => s.status == ScheduleStatus.next);
-        final completedSchedules = state.scheduledRoutines.where(
-          (s) => [
-            ScheduleStatus.inReview,
-            ScheduleStatus.done,
-            ScheduleStatus.missed
-          ].contains(s.status),
-        );
+            .where((s) => s.status == ScheduleStatus.next)
+            .toList();
+        nextUpSchedules.sort((a, b) => a.time.compareTo(b.time));
+
+        final completedSchedules = state.scheduledRoutines
+            .where(
+              (s) => [
+                ScheduleStatus.inReview,
+                ScheduleStatus.done,
+                ScheduleStatus.missed
+              ].contains(s.status),
+            )
+            .toList();
+        completedSchedules.sort((a, b) => b.time.compareTo(a.time));
+
         return RefreshIndicator(
           onRefresh: () async =>
               BlocProvider.of<RoutineBlocCubit>(context).reload(),
@@ -118,6 +128,7 @@ class _ScheduleGroup extends StatelessWidget {
                     ),
                     Icon(
                       Icons.help_outline,
+                      size: 20,
                       color: Colors.white.withOpacity(.9),
                     )
                   ],

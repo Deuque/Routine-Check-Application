@@ -13,7 +13,7 @@ class RoutineBlocState extends Equatable {
 
   List<ScheduleModel> scheduleFromRoutine(RoutineModel model) {
     final schedules = <ScheduleModel>[];
-    DateTime dateTime = model.createdAt..add(const Duration(minutes: 15));
+    DateTime dateTime = model.createdAt.add(const Duration(minutes: 15));
     final now = DateTime.now();
 
     // get schedules from datetime till current time
