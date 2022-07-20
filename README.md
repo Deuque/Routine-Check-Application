@@ -1,7 +1,7 @@
 # Nomba
 
-A Nomba task Flutter project.
-
+A Nomba task Flutter project.<br/>
+This project covers the case study of a routine check mobile application.<br/> 
 ## Preview
 <br/>
 <img src="media/nomba1.png" height="420"/>
@@ -10,6 +10,11 @@ A Nomba task Flutter project.
 <img src="media/nomba5.png" height="420"/>
 <img src="media/nomba3.png" height="420"/>
 
+<br/>
+
+## Further Improvements
+
+Having been developed with simplicity in mind, this project only offers periodic updates every minute to ensure routines are continously updated, while the app is in the foreground or background, not terminated. This project can be further improved to provide notification reports when routine checks are due even when the application is terminated.
 
 ## Getting Started
 
