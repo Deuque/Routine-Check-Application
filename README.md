@@ -1,6 +1,15 @@
-# nomba
+# Nomba
 
 A Nomba task Flutter project.
+
+## Preview
+<br/>
+<img src="media/nomba1.png" height="420"/>
+<img src="media/nomba4.png" height="420"/>
+<img src="media/nomba2.png" height="420"/>
+<img src="media/nomba5.png" height="420"/>
+<img src="media/nomba3.png" height="420"/>
+
 
 ## Getting Started
 
