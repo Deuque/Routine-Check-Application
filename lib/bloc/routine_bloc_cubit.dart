@@ -68,7 +68,7 @@ class RoutineBlocCubit extends Cubit<RoutineBlocState> {
     }
   }
 
-  // delete a  routine and save to local storage
+  // delete a routine and save to local storage
   Future<String?> deleteRoutine(RoutineModel routineModel) async {
     try {
       final routineList = state.routines
