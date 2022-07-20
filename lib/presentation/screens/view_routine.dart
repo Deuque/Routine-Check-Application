@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 import 'package:nomba/bloc/routine_bloc_cubit.dart';
 import 'package:nomba/domain/routine_model.dart';
+import 'package:nomba/helpers/date_formatter.dart';
 import 'package:nomba/helpers/string_formatter.dart';
 
 class ViewRoutine extends StatelessWidget {
@@ -28,14 +30,24 @@ class ViewRoutine extends StatelessWidget {
 
   Widget _loadedRoutine(BuildContext context, RoutineModel model) {
     final textTheme = Theme.of(context).textTheme;
+    final nextSchedule =
+        BlocProvider.of<RoutineBlocCubit>(context).getNextSchedule(model);
+    final performance =
+        BlocProvider.of<RoutineBlocCubit>(context).getRoutinePerformance(model);
+    final titleStyle =
+        textTheme.bodyText2?.copyWith(color: Colors.black.withOpacity(.7));
+    final descriptionStyle =
+        textTheme.titleMedium?.copyWith(color: Colors.black);
+
     return Scaffold(
       appBar: AppBar(
         title: Hero(
           tag: model.title,
           child: Material(
-              color: Colors.transparent,
-              textStyle: textTheme.titleLarge,
-              child: Text(model.title)),
+            color: Colors.transparent,
+            textStyle: textTheme.titleLarge,
+            child: Text(model.title),
+          ),
         ),
         centerTitle: false,
         actions: [
@@ -63,35 +75,60 @@ class ViewRoutine extends StatelessWidget {
         children: [
           Text(
             'Description',
-            style: textTheme.caption,
+            style: titleStyle,
           ),
           const SizedBox(
             height: 4,
           ),
           Text(
             model.description,
-            style: textTheme.titleMedium,
+            style: descriptionStyle,
           ),
           const SizedBox(
-            height: 15,
+            height: 20,
           ),
           Text(
             'Frequency',
-            style: textTheme.caption,
+            style: titleStyle,
           ),
           const SizedBox(
             height: 4,
           ),
           Text(
             toInitialCaps(model.frequency.name),
-            style: textTheme.titleMedium,
+            style: descriptionStyle,
           ),
           const SizedBox(
-            height: 15,
+            height: 20,
+          ),
+          Text(
+            'Next Routine Schedule',
+            style: titleStyle,
+          ),
+          const SizedBox(
+            height: 4,
+          ),
+          Text(
+            nextSchedule == null
+                ? 'N/A'
+                : '${formattedDate(nextSchedule)} . ${DateFormat.Hm().format(nextSchedule)}',
+            style: descriptionStyle,
+          ),
+          const SizedBox(
+            height: 20,
           ),
           Text(
             'Performance',
-            style: textTheme.caption,
+            style: titleStyle,
+          ),
+          const SizedBox(
+            height: 4,
+          ),
+          Text(
+            performance < 70
+                ? '😢, Not doing well so far'
+                : '👍, Good job! You have over 70% check rate for this routine',
+            style: descriptionStyle,
           ),
         ],
       ),

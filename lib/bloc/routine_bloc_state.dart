@@ -2,14 +2,14 @@ part of 'routine_bloc_cubit.dart';
 
 class RoutineBlocState extends Equatable {
   final List<RoutineModel> routines;
+  late final DateTime loadedAt;
   late final List<ScheduleModel> scheduledRoutines;
 
   RoutineBlocState(this.routines) {
+    loadedAt = DateTime.now();
     scheduledRoutines = [for (final r in routines) ...scheduleFromRoutine(r)];
     scheduledRoutines.sort((a, b) => b.time.compareTo(a.time));
   }
-
-  RoutineBlocState reload() => RoutineBlocState(routines);
 
   List<ScheduleModel> scheduleFromRoutine(RoutineModel model) {
     final schedules = <ScheduleModel>[];
@@ -49,7 +49,7 @@ class RoutineBlocState extends Equatable {
         ),
       );
     }
-    // check if next schedule is in 12hrs (12x60mins)
+    // check if next schedule is in 12hrs (12x60 minutes)
     else if (differenceAfterNow <= 720) {
       schedules.add(
         ScheduleModel(
@@ -64,5 +64,5 @@ class RoutineBlocState extends Equatable {
   }
 
   @override
-  List<Object?> get props => [routines, scheduledRoutines];
+  List<Object?> get props => [routines, loadedAt, scheduledRoutines];
 }

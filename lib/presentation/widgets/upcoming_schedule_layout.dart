@@ -14,11 +14,16 @@ class UpcomingScheduleLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      onTap: () => Navigator.pushNamed(
+        context,
+        '/viewRoutine',
+        arguments: model.routineModel.createdAt,
+      ),
       title: Text(model.routineModel.title),
       subtitle: Text(
         '${formattedDate(model.time)} . ${DateFormat.Hm().format(model.time)}',
       ),
-      trailing: Text(formattedTimeDifference(model.time)),
+      trailing: Text('In ${formattedTimeDifference(model.time)}'),
     );
   }
 }

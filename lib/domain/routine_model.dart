@@ -3,7 +3,11 @@ import 'package:equatable/equatable.dart';
 // This model holds routine information created by the user
 class RoutineModel extends Equatable {
   final String title, description;
+
+  // This will be used as the identifier, as every date will be unique
+  // and this date will not be changed
   final DateTime createdAt;
+
   final Set<DateTime> doneSessions;
   final RoutineFrequency frequency;
 
@@ -14,6 +18,16 @@ class RoutineModel extends Equatable {
     required this.doneSessions,
     required this.frequency,
   });
+
+  RoutineModel copyWith(Set<DateTime> newDoneSessions) {
+    return RoutineModel(
+      title: title,
+      description: description,
+      createdAt: createdAt,
+      doneSessions: newDoneSessions,
+      frequency: frequency,
+    );
+  }
 
   Map<String, dynamic> toJson() => {
         'title': title,
@@ -34,7 +48,8 @@ class RoutineModel extends Equatable {
       );
 
   @override
-  List<Object?> get props => [title, description, createdAt, doneSessions];
+  List<Object?> get props =>
+      [title, description, createdAt, doneSessions, frequency];
 }
 
 enum RoutineFrequency { hourly, daily, weekly, monthly, yearly }
