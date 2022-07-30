@@ -1,6 +1,5 @@
-# Nomba
+# Routine Check
 
-A Nomba task Flutter project.<br/>
 This project covers the case study of a routine check mobile application.<br/> 
 ## Preview
 <br/>
